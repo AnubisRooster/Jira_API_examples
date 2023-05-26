@@ -1,0 +1,68 @@
+from jira import JIRA
+import pandas as pd
+import matplotlib.pyplot as plt
+from docx import Document
+from docx.shared import Inches
+
+# Jira credentials and connection
+jira = JIRA(server='https://your-jira-instance.com', basic_auth=('username', 'password'))
+
+# JQL query for retrieving incidents involving PagerDuty within the last thirty days
+jql_query = 'project = "Your Project" AND issuetype = Incident AND created >= -30d AND "PagerDuty" is not EMPTY'
+
+# Retrieve issues based on the JQL query
+issues = jira.search_issues(jql_query, maxResults=False)
+
+# Extract necessary information and store in a DataFrame
+data = []
+for issue in issues:
+    incident_id = issue.key
+    created_date = issue.fields.created
+    updated_date = issue.fields.updated
+    resolution_date = issue.fields.resolutiondate
+
+    created_datetime = pd.to_datetime(created_date)
+    updated_datetime = pd.to_datetime(updated_date)
+    resolution_datetime = pd.to_datetime(resolution_date)
+
+    time_to_first_update = (updated_datetime - created_datetime).total_seconds() / 3600
+    time_to_close = (resolution_datetime - created_datetime).total_seconds() / 3600
+
+    data.append([incident_id, time_to_first_update, time_to_close])
+
+df = pd.DataFrame(data, columns=['Incident ID', 'Time to First Update (hours)', 'Time to Close (hours)'])
+
+# Create a time series chart for Time to First Update
+df['Created Date'] = pd.to_datetime(df['Created Date'])
+df.set_index('Created Date', inplace=True)
+df['Time to First Update (hours)'] = pd.to_numeric(df['Time to First Update (hours)'], errors='coerce')
+df.plot(y='Time to First Update (hours)', figsize=(10, 6))
+plt.title('Time to First Update for Incidents involving PagerDuty')
+plt.xlabel('Date')
+plt.ylabel('Time to First Update (hours)')
+plt.legend()
+plt.savefig('time_to_first_update_chart.png')
+
+# Create a time series chart for Time to Close
+df['Created Date'] = pd.to_datetime(df['Created Date'])
+df.set_index('Created Date', inplace=True)
+df['Time to Close (hours)'] = pd.to_numeric(df['Time to Close (hours)'], errors='coerce')
+df.plot(y='Time to Close (hours)', figsize=(10, 6))
+plt.title('Time to Close for Incidents involving PagerDuty')
+plt.xlabel('Date')
+plt.ylabel('Time to Close (hours)')
+plt.legend()
+plt.savefig('time_to_close_chart.png')
+
+# Export the DataFrame to a CSV file
+df.to_csv('incidents.csv', index=False)
+
+# Create a Word document and insert the charts
+doc = Document()
+doc.add_paragraph('Incidents involving PagerDuty')
+
+doc.add_picture('time_to_first_update_chart.png', width=Inches(6))
+doc.add_paragraph('\n')
+doc.add_picture('time_to_close_chart.png', width=Inches(6))
+
+doc.save('incidents.docx')
