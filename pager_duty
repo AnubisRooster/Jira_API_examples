@@ -5,17 +5,21 @@ from docx import Document
 from docx.shared import Inches
 
 # Jira credentials and connection
-jira = JIRA(server='https://your-jira-instance.com', basic_auth=('username', 'password'))
+jira = JIRA(server='https://memsql.atlassian.net', basic_auth=('it-automation+jira_reporting@singlestore.com', 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'))
 
 # JQL query for retrieving incidents involving PagerDuty within the last thirty days
-jql_query = 'project = "Your Project" AND issuetype = Incident AND created >= -30d AND "PagerDuty" is not EMPTY'
+jql_query = 'project in (MCDB, PLAT) AND component = pagerduty-sre AND priority = "Unbreak Now!" AND created >= 2023-04-01 AND created <= 2023-05-01'
 
 # Retrieve issues based on the JQL query
+print("Retrieving issues...")
 issues = jira.search_issues(jql_query, maxResults=False)
+print(f"Number of issues retrieved: {len(issues)}")
 
 # Extract necessary information and store in a DataFrame
+print("Extracting information from issues...")
 data = []
-for issue in issues:
+for i, issue in enumerate(issues, 1):
+    print(f"Processing issue {i}/{len(issues)}")
     incident_id = issue.key
     created_date = issue.fields.created
     updated_date = issue.fields.updated
@@ -23,17 +27,26 @@ for issue in issues:
 
     created_datetime = pd.to_datetime(created_date)
     updated_datetime = pd.to_datetime(updated_date)
-    resolution_datetime = pd.to_datetime(resolution_date)
+
+    # Check if resolution_datetime is not None
+    if resolution_date is not None:
+        resolution_datetime = pd.to_datetime(resolution_date)
+        time_to_close = (resolution_datetime - created_datetime).total_seconds() / 3600
+    else:
+        time_to_close = None
 
     time_to_first_update = (updated_datetime - created_datetime).total_seconds() / 3600
-    time_to_close = (resolution_datetime - created_datetime).total_seconds() / 3600
 
-    data.append([incident_id, time_to_first_update, time_to_close])
+    data.append([incident_id, created_datetime, time_to_first_update, time_to_close])
 
-df = pd.DataFrame(data, columns=['Incident ID', 'Time to First Update (hours)', 'Time to Close (hours)'])
+df = pd.DataFrame(data, columns=['Incident ID', 'Created Date', 'Time to First Update (hours)', 'Time to Close (hours)'])
+
+# Calculate average time to update and average time to close
+average_time_to_update = df['Time to First Update (hours)'].mean()
+average_time_to_close = df['Time to Close (hours)'].mean()
 
 # Create a time series chart for Time to First Update
-df['Created Date'] = pd.to_datetime(df['Created Date'])
+print("Creating time series chart for Time to First Update...")
 df.set_index('Created Date', inplace=True)
 df['Time to First Update (hours)'] = pd.to_numeric(df['Time to First Update (hours)'], errors='coerce')
 df.plot(y='Time to First Update (hours)', figsize=(10, 6))
@@ -44,8 +57,7 @@ plt.legend()
 plt.savefig('time_to_first_update_chart.png')
 
 # Create a time series chart for Time to Close
-df['Created Date'] = pd.to_datetime(df['Created Date'])
-df.set_index('Created Date', inplace=True)
+print("Creating time series chart for Time to Close...")
 df['Time to Close (hours)'] = pd.to_numeric(df['Time to Close (hours)'], errors='coerce')
 df.plot(y='Time to Close (hours)', figsize=(10, 6))
 plt.title('Time to Close for Incidents involving PagerDuty')
@@ -55,14 +67,24 @@ plt.legend()
 plt.savefig('time_to_close_chart.png')
 
 # Export the DataFrame to a CSV file
-df.to_csv('incidents.csv', index=False)
+print("Exporting data to CSV...")
+df.to_csv('incidents.csv')
 
 # Create a Word document and insert the charts
+print("Creating Word document and inserting charts...")
 doc = Document()
 doc.add_paragraph('Incidents involving PagerDuty')
+
+doc.add_paragraph(f'Number of Issues: {len(issues)}')
 
 doc.add_picture('time_to_first_update_chart.png', width=Inches(6))
 doc.add_paragraph('\n')
 doc.add_picture('time_to_close_chart.png', width=Inches(6))
 
+# Add average metrics to the Word document
+doc.add_paragraph(f'Average Time to Update: {average_time_to_update:.2f} hours')
+doc.add_paragraph(f'Average Time to Close: {average_time_to_close:.2f} hours')
+
 doc.save('incidents.docx')
+
+print("Process completed successfully!")
