@@ -22,10 +22,11 @@ for issue in issues:
     summary = issue.fields.summary
     issue_key = issue.key
     status = issue.fields.status.name
-    data.append([assignee, summary, issue_key, status])
+    parent_issue_summary = issue.fields.parent.fields.summary if hasattr(issue.fields, 'parent') and issue.fields.parent else ""
+    data.append([assignee, summary, issue_key, status, parent_issue_summary])
 
 # Create a DataFrame from the data
-df = pd.DataFrame(data, columns=["Assignee", "Summary", "Issue Key", "Status"])
+df = pd.DataFrame(data, columns=["Assignee", "Summary", "Issue Key", "Status", "Parent Issue Summary"])
 
 # Sort the DataFrame by assignee
 df = df.sort_values(by="Assignee")
