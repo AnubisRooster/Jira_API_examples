@@ -3,7 +3,7 @@ from jira import JIRA
 import pandas as pd
 
 # Jira credentials and connection
-jira = JIRA(server='https://instance.atlassian.net', basic_auth=('person@singlestore.com', 'api-token'))
+jira = JIRA(server='https://[domain].atlassian.net', basic_auth=('[email@address.com]', 'api-token'))
 
 # JQL query for issues by Assignee within the last six months
 jql_query = 'project in ("project") AND issuetype in (Bug, Story, Task, Sub-task, Improvement, Investigation, "New Feature", Request) AND Sprint in closedSprints() AND assignee = "629760a89582b8006fc545c6" AND updated > startOfDay(-14d)'
