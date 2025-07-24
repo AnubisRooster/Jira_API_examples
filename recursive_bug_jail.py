@@ -1,21 +1,21 @@
 import requests
 
 # Jira API endpoint
-api_url = "https://memsql.atlassian.net/rest/api/2"
+api_url = "https://[domain].atlassian.net/rest/api/2"
 
 
 # Jira project key
-project_key = "INFRA"
+project_key = "[project]"
 
 # Jira query to find assignees with more than nine tasks
 jql_query = f'project = {project_key} AND assignee is <assignee> GROUP BY assignee HAVING count(assignee) > 1'
 
 # Jira authentication credentials
-username = "it-automation+jira_reporting@singlestore.com"
+username = "[email@address.com]"
 api_token = ""
 
 # Email configuration
-sender_email = "jira@memsql.atlassian.net"
+sender_email = "jira@[domain].atlassian.net"
 email_subject = "Bug Jail Notification"
 email_body_template = """
 Dear {assignee_name},
