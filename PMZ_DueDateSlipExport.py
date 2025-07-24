@@ -3,9 +3,9 @@ from datetime import datetime, timedelta
 import pandas as pd
 
 # Set up your Jira server URL and credentials
-JIRA_SERVER = 'https://memsql.atlassian.net'
-USERNAME = 'it-automation+jira_reporting@singlestore.com'
-PASSWORD = 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'
+JIRA_SERVER = 'https://[domain].atlassian.net'
+USERNAME = '[email]'
+PASSWORD = '[auth_token]'
 
 # Connect to Jira
 jira = JIRA(server=JIRA_SERVER, basic_auth=(USERNAME, PASSWORD))
