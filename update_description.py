@@ -2,9 +2,9 @@ import requests
 import base64
 
 # Set up Jira API credentials and base URL
-username = 'it-automation+jira_reporting@singlestore.com'
-api_token = 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'
-base_url = 'https://memsql.atlassian.net'
+username = '[email@address.com]'
+api_token = '[auth_token]'
+base_url = 'https://[domain].atlassian.net'
 
 # Encode credentials as a base64 string
 credentials = base64.b64encode(f'{username}:{api_token}'.encode('utf-8')).decode('utf-8')
@@ -14,7 +14,7 @@ headers = {
 }
 
 # Define JQL query to find CLOSED issues from the most recent version release
-jql_query = 'project = INFRA AND status in (Closed, Done) AND fixVersion = "Test Release 0.1" ORDER BY resolutiondate DESC'
+jql_query = 'project = [project] AND status in (Closed, Done) AND fixVersion = "Test Release 0.1" ORDER BY resolutiondate DESC'
 
 # Get issue keys of matching issues using JQL search
 search_url = f'{base_url}/rest/api/2/search'
