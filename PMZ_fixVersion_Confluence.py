@@ -4,16 +4,16 @@ from openpyxl import Workbook
 from datetime import datetime, timedelta
 
 # Jira Configuration
-jira_url = 'https://memsql.atlassian.net'
-jira_username = 'it-automation+jira_reporting@singlestore.com'
-jira_api_token = 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'
-jira_project_key = 'PMZ'
+jira_url = 'https://[domain].atlassian.net'
+jira_username = '[email@address.com]'
+jira_api_token = '[auth_token]'
+jira_project_key = '[project]'
 
 # Confluence Configuration
-confluence_url = 'https://memsql.atlassian.net'
-confluence_username = 'it-automation+jira_reporting@singlestore.com'
-confluence_api_token = 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'
-confluence_page_id = '2347892815'
+confluence_url = 'https://[domain].atlassian.net'
+confluence_username = '[email@address.com]'
+confluence_api_token = '[auth_token]'
+confluence_page_id = '[id]'
 
 # Initialize Jira
 jira = JIRA(server=jira_url, basic_auth=(jira_username, jira_api_token))
