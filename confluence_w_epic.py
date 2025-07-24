@@ -6,8 +6,8 @@ from configparser import ConfigParser
 from atlassian import Confluence
 
 # Jira credentials
-JIRA_SERVER = os.getenv("JIRA_SERVER", 'https://memsql.atlassian.net')
-CONFLUENCE_SERVER = os.getenv("CONFLUENCE_SERVER", 'https://memsql.atlassian.net')
+JIRA_SERVER = os.getenv("JIRA_SERVER", 'https://[domain].atlassian.net')
+CONFLUENCE_SERVER = os.getenv("CONFLUENCE_SERVER", 'https://[domain].atlassian.net')
 DRY_RUN = True if os.getenv("DRY_RUN", "false") == "true" else False
 
 # Load credentials from config file - if this file exists, otherwise use dev-jira-auth.sh from Francisco
