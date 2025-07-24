@@ -17,7 +17,7 @@ def calculate_median(values):
     return median
 
 # Jira credentials and connection
-jira = JIRA(server='https://memsql.atlassian.net', basic_auth=('it-automation+jira_reporting@singlestore.com', 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'))
+jira = JIRA(server='[jira_domain]', basic_auth=('[emailaddress]', '[auth_token]'))
 
 # JQL query for retrieving all closed Features within PMZ
 jql_query = 'project in (PMZ) AND issuetype in (Story, Features) AND updated > -360d'
@@ -34,10 +34,7 @@ status_categories = [
     'Release Readiness',
 ]
 components = [
-    "Extensibility", "Query Execution", "Query Optimization", "Security",
-    "Updatability", "Monitoring", "PLG & DevEx", "Usage & Billing",
-    "Infrastructure", "Deployment", "HA & Recovery",
-    "Integrations & Connectors", "Ingest & Migration"
+    "component_names"
 ]
 status_durations_by_component = {component: {status: [] for status in status_categories} for component in components}
 
