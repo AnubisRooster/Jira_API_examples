@@ -7,7 +7,7 @@ from docx import Document
 from docx.shared import Inches
 
 # Jira credentials and connection
-jira = JIRA(server='https://memsql.atlassian.net', basic_auth=('it-automation+jira_reporting@singlestore.com', 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'))
+jira = JIRA(server='[jira_domain]', basic_auth=('[emailaddress]', '[auth_token]'))
 
 def add_chart_and_metrics(project_df, project_name):
     # Convert the date format to "YYYY-MM-DD"
@@ -40,8 +40,8 @@ def add_chart_and_metrics(project_df, project_name):
     doc.add_paragraph(f'Average Time to Close ({project_name}): {project_df["Time to Close (hours)"].mean():.2f} hours')
     doc.add_page_break()
 
-# JQL query for retrieving all closed tickets within DATA/PSY/INFRA/OPS
-jql_query = 'project in (MCDB, DB, PLAT) AND issuetype in (Bug, Story, Task, Sub-task, Escalation, Investigation, "Customer Support", Test) AND status in (Closed, "Code Ready") AND created > -720d'
+# JQL query for retrieving all closed tickets within [projects]
+jql_query = 'project in ([projects]) AND issuetype in (Bug, Story, Task, Sub-task, Escalation, Investigation, "Customer Support", Test) AND status in (Closed, "Code Ready") AND created > -720d'
 
 # Retrieve issues based on the JQL query
 issues = jira.search_issues(jql_query, maxResults=False, expand='changelog')
@@ -106,7 +106,7 @@ average_time_to_close = df['Time to Close (hours)'].mean()
 doc = Document()
 
 # Add individual charts and metrics for each project
-projects = ['DB', 'PLAT', 'MCDB']
+projects = ['projects']
 for project in projects:
     project_df = df[df['Incident ID'].str.startswith(project)]
     add_chart_and_metrics(project_df, project)
