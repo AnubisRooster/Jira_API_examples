@@ -3,10 +3,10 @@ from jira import JIRA
 import pandas as pd
 
 # Jira credentials and connection
-jira = JIRA(server='https://memsql.atlassian.net', basic_auth=('it-automation+jira_reporting@singlestore.com', 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'))
+jira = JIRA(server='https://[domain].atlassian.net', basic_auth=('[email@address.com]', '[auth_token]'))
 
 # JQL query for issues by Assignee within the last six months
-jql_query = 'project in (INFRA, PSY) AND issuetype in (Bug, Story, Task, Sub-task, Improvement, Investigation, "New Feature", Request) AND Sprint in closedSprints() AND updated > startOfDay(-90d)'
+jql_query = 'project in ([projects]) AND issuetype in (Bug, Story, Task, Sub-task, Improvement, Investigation, "New Feature", Request) AND Sprint in closedSprints() AND updated > startOfDay(-90d)'
 
 # Calculate the date range
 end_date = datetime.now().date()
