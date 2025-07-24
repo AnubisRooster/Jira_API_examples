@@ -5,15 +5,15 @@ import matplotlib.pyplot as plt
 from docx import Document
 
 # Jira credentials
-JIRA_SERVER = os.getenv("JIRA_SERVER", 'https://memsql.atlassian.net')
+JIRA_SERVER = os.getenv("JIRA_SERVER", 'https://[domain].atlassian.net')
 DRY_RUN = True if os.getenv("DRY_RUN", "false") == "true" else False
 
 # Hardcoded credentials (for testing purposes)
-JIRA_USERNAME = "it-automation+jira_reporting@singlestore.com"
-JIRA_PASSWORD = "ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84"
+JIRA_USERNAME = "[email@address.com]"
+JIRA_PASSWORD = "[auth_token]"
 
 # Set the board ID
-JIRA_BOARD_ID = "224"
+JIRA_BOARD_ID = "[id]"
 
 try:
     # Connect to Jira
