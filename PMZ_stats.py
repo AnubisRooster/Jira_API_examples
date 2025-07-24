@@ -17,7 +17,7 @@ def calculate_median(values):
     return median
 
 # Jira credentials and connection
-jira = JIRA(server='https://memsql.atlassian.net', basic_auth=('it-automation+jira_reporting@singlestore.com', 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'))
+jira = JIRA(server='https://[domain].atlassian.net', basic_auth=('email@address.com]', '[auth_token]'))
 
 # JQL query for retrieving all closed Features within PMZ
 jql_query = 'project in (PMZ) AND issuetype in (Story, Features) AND status in (Shipped, Closed, "Release Readiness") AND updated > -60d'
