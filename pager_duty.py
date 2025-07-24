@@ -5,10 +5,10 @@ from docx import Document
 from docx.shared import Inches
 
 # Jira credentials and connection
-jira = JIRA(server='https://memsql.atlassian.net', basic_auth=('it-automation+jira_reporting@singlestore.com', 'ATATT3xFfGF0JgsZms4GLYlWArKOSeTOnIOZx4pz0YQ0WkLnN3rQg8777YpW-m39gI8oS463by7hv_boSRiTNW9pYPadtDnXlDZiSTvLtRns8Xrh4CUQLRQsdnluREK84CoedSP0PN2Gk5H58BXI5EszVdjb6ht-ozqEFTiEesQhD5aPgH1Vbc0=FECBFB84'))
+jira = JIRA(server='https://[domain].atlassian.net', basic_auth=('[email@address.com]', '[auth_token]'))
 
 # JQL query for retrieving incidents involving PagerDuty within the last thirty days
-jql_query = 'project in (MCDB, PLAT) AND component = pagerduty-sre AND priority = "Unbreak Now!" AND created >= 2023-04-01 AND created <= 2023-05-01'
+jql_query = 'project in ([projects]) AND component = pagerduty-sre AND priority = "Unbreak Now!" AND created >= 2023-04-01 AND created <= 2023-05-01'
 
 # Retrieve issues based on the JQL query
 print("Retrieving issues...")
