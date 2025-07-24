@@ -1,9 +1,9 @@
 function getEpicsFromJira() {
     // Jira credentials and URL
-    var jiraDomain = 'memsql.atlassian.net';  // Jira domain
-    var jiraEmail = 'mfink@singlestore.com'; // Your Jira email
-    var jiraToken = 'ATATT3xFfGF0ZYV987OGmCENMnHBz1tD_DHylzKuCgFiOV1fSdULdiLheg2Pmr14ucy1giqLP3AQHfIWHxPDH20QnrkMCt0VYgNBhxmodgoDaRGs8r-iHs2srBmTJBDZq2VR17sUKNacDZ-VHkjTSf74cw0E1Oq588Y4YAjF17DhSaYQL1HianU=C24D52E4';         // 
-    var projectKeys = ['PSY', 'INFRA', 'DEVPLAT','DATA']; // List of project keys
+    var jiraDomain = '[domain].atlassian.net';  // Jira domain
+    var jiraEmail = '[email@address.com]'; // Your Jira email
+    var jiraToken = '[auth_token]';         // 
+    var projectKeys = ['projects']; // List of project keys
 
     // Jira API authorization
     var headers = {
