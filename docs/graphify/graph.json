@@ -21,22 +21,22 @@
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "All_GIT_160_Days.py",
+      "community_name": "matplotlib_pyplot",
       "file_type": "code",
       "norm_label": "add_chart_and_metrics()",
       "source_file": "All_GIT_160_Days.py",
       "source_location": "L12"
     },
     {
-      "id": "db_stats_add_chart_and_metrics",
+      "id": "all_git_metrics_60days_add_chart_and_metrics",
       "label": "add_chart_and_metrics()",
       "_callable": true,
       "_origin": "ast",
       "community": 2,
-      "community_name": "All_GIT_160_Days.py",
+      "community_name": "matplotlib_pyplot",
       "file_type": "code",
       "norm_label": "add_chart_and_metrics()",
-      "source_file": "DB-stats.py",
+      "source_file": "All_GIT_Metrics_60days.py",
       "source_location": "L12"
     },
     {
@@ -88,15 +88,15 @@
       "source_location": "L8"
     },
     {
-      "id": "all_git_metrics_60days_add_chart_and_metrics",
+      "id": "db_stats_add_chart_and_metrics",
       "label": "add_chart_and_metrics()",
       "_callable": true,
       "_origin": "ast",
       "community": 7,
-      "community_name": "matplotlib_pyplot",
+      "community_name": "DB-stats.py",
       "file_type": "code",
       "norm_label": "add_chart_and_metrics()",
-      "source_file": "All_GIT_Metrics_60days.py",
+      "source_file": "DB-stats.py",
       "source_location": "L12"
     },
     {
@@ -215,10 +215,21 @@
       "label": "All_GIT_160_Days.py",
       "_origin": "ast",
       "community": 2,
-      "community_name": "All_GIT_160_Days.py",
+      "community_name": "matplotlib_pyplot",
       "file_type": "code",
       "norm_label": "all_git_160_days.py",
       "source_file": "All_GIT_160_Days.py",
+      "source_location": "L1"
+    },
+    {
+      "id": "all_git_metrics_60days",
+      "label": "All_GIT_Metrics_60days.py",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "matplotlib_pyplot",
+      "file_type": "code",
+      "norm_label": "all_git_metrics_60days.py",
+      "source_file": "All_GIT_Metrics_60days.py",
       "source_location": "L1"
     },
     {
@@ -226,21 +237,10 @@
       "label": "Assignee_Analysis.py",
       "_origin": "ast",
       "community": 2,
-      "community_name": "All_GIT_160_Days.py",
+      "community_name": "matplotlib_pyplot",
       "file_type": "code",
       "norm_label": "assignee_analysis.py",
       "source_file": "Assignee_Analysis.py",
-      "source_location": "L1"
-    },
-    {
-      "id": "db_stats",
-      "label": "DB-stats.py",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "All_GIT_160_Days.py",
-      "file_type": "code",
-      "norm_label": "db-stats.py",
-      "source_file": "DB-stats.py",
       "source_location": "L1"
     },
     {
@@ -343,14 +343,14 @@
       "source_location": "L1"
     },
     {
-      "id": "all_git_metrics_60days",
-      "label": "All_GIT_Metrics_60days.py",
+      "id": "db_stats",
+      "label": "DB-stats.py",
       "_origin": "ast",
       "community": 7,
-      "community_name": "matplotlib_pyplot",
+      "community_name": "DB-stats.py",
       "file_type": "code",
-      "norm_label": "all_git_metrics_60days.py",
-      "source_file": "All_GIT_Metrics_60days.py",
+      "norm_label": "db-stats.py",
+      "source_file": "DB-stats.py",
       "source_location": "L1"
     },
     {
@@ -519,10 +519,21 @@
       "type": "external"
     },
     {
+      "id": "matplotlib_pyplot",
+      "label": "matplotlib_pyplot",
+      "community": 2,
+      "community_name": "matplotlib_pyplot",
+      "external": true,
+      "file_type": "concept",
+      "norm_label": "matplotlib_pyplot",
+      "source_file": "",
+      "type": "external"
+    },
+    {
       "id": "numpy",
       "label": "numpy",
       "community": 2,
-      "community_name": "All_GIT_160_Days.py",
+      "community_name": "matplotlib_pyplot",
       "external": true,
       "file_type": "concept",
       "norm_label": "numpy",
@@ -533,7 +544,7 @@
       "id": "pytz",
       "label": "pytz",
       "community": 2,
-      "community_name": "All_GIT_160_Days.py",
+      "community_name": "matplotlib_pyplot",
       "external": true,
       "file_type": "concept",
       "norm_label": "pytz",
@@ -660,20 +671,57 @@
       "norm_label": "pandas",
       "source_file": "",
       "type": "external"
-    },
-    {
-      "id": "matplotlib_pyplot",
-      "label": "matplotlib_pyplot",
-      "community": 7,
-      "community_name": "matplotlib_pyplot",
-      "external": true,
-      "file_type": "concept",
-      "norm_label": "matplotlib_pyplot",
-      "source_file": "",
-      "type": "external"
     }
   ],
   "links": [
+    {
+      "source": "all_git_160_days_add_chart_and_metrics",
+      "target": "matplotlib_pyplot",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "All_GIT_160_Days.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "all_git_metrics_60days_add_chart_and_metrics",
+      "target": "matplotlib_pyplot",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "All_GIT_Metrics_60days.py",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "db_stats_add_chart_and_metrics",
+      "target": "matplotlib_pyplot",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "DB-stats.py",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "recursive_bug_jail_get_issues",
+      "target": "requests",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "recursive_bug_jail.py",
+      "source_location": "L66",
+      "weight": 1.0
+    },
     {
       "source": "7_day_scrape",
       "target": "pandas",
@@ -1998,5 +2046,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "0eec814b78b79adfa15d24525630cbea7cbe61d9"
+  "built_at_commit": "628074fc731f556496eadf9cc44fb59a1761900e"
 }
