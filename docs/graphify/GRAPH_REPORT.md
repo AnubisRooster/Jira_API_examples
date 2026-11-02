@@ -1,4 +1,4 @@
-# Graph Report - Jira_API_examples  (2026-10-26)
+# Graph Report - Jira_API_examples  (2026-11-02)
 
 ## Corpus Check
 - Corpus is ~22,841 words - fits in a single context window. You may not need a graph.
